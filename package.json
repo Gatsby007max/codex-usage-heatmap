@@ -5,6 +5,14 @@
   "type": "module",
   "license": "MIT",
   "author": "Codex Usage Heatmap contributors",
+  "homepage": "https://github.com/Gatsby007max/codex-usage-heatmap#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gatsby007max/codex-usage-heatmap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Gatsby007max/codex-usage-heatmap/issues"
+  },
   "keywords": [
     "codex",
     "usage",
