@@ -1,0 +1,70 @@
+{
+  "name": "codex-usage-heatmap",
+  "version": "0.1.0",
+  "description": "Visualize your local Codex token usage as a GitHub-style heatmap.",
+  "type": "module",
+  "license": "MIT",
+  "author": "",
+  "homepage": "https://github.com/your-org/codex-usage-heatmap#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/codex-usage-heatmap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/codex-usage-heatmap/issues"
+  },
+  "keywords": [
+    "codex",
+    "usage",
+    "tokens",
+    "heatmap",
+    "cli",
+    "local-first"
+  ],
+  "bin": {
+    "cuh": "./dist/cli.js",
+    "codex-usage-heatmap": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md",
+    ".agents/skills/codex-usage-heatmap"
+  ],
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsup src/cli.ts src/index.ts --format esm --dts --clean",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "check:language": "tsx scripts/check-language.ts",
+    "sample": "tsx src/cli.ts sample --out examples/sample-report",
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm check:language"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "date-fns": "^4.1.0",
+    "fast-glob": "^3.3.3",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^22.19.3",
+    "eslint": "^9.39.1",
+    "prettier": "^3.7.4",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.1",
+    "vitest": "^2.1.9"
+  }
+}

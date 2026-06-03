@@ -1,0 +1,1 @@
+{"type":"token_count","timestamp":"2026-06-06T10:00:00.000Z","session_id":"fixture-sensitive","payload":{"info":{"last_token_usage":{"input_tokens":1,"cached_input_tokens":0,"output_tokens":1,"reasoning_output_tokens":0,"total_tokens":2}}},"fake_secret_marker":"sk-test-not-a-real-secret"}

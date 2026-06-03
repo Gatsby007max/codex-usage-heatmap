@@ -1,0 +1,28 @@
+[
+  {
+    "date": "2026-06-01",
+    "inputTokens": 2200,
+    "cachedInputTokens": 300,
+    "outputTokens": 750,
+    "reasoningOutputTokens": 125,
+    "totalTokens": 3375,
+    "eventCount": 2,
+    "sessionCount": 1,
+    "filesCount": 1,
+    "level": 3,
+    "levelBasis": "quantile"
+  },
+  {
+    "date": "2026-06-02",
+    "inputTokens": 800,
+    "cachedInputTokens": 50,
+    "outputTokens": 250,
+    "reasoningOutputTokens": 25,
+    "totalTokens": 1125,
+    "eventCount": 1,
+    "sessionCount": 1,
+    "filesCount": 1,
+    "level": 1,
+    "levelBasis": "quantile"
+  }
+]
