@@ -6,8 +6,9 @@ The current `0.x` release line receives security fixes.
 
 ## Reporting Vulnerabilities
 
-Please report vulnerabilities through the project issue tracker or the maintainer contact
-listed by the repository owner. Do not include real credentials or private logs in reports.
+Please report vulnerabilities through GitHub Security Advisories when enabled, or through the
+project issue tracker if a private advisory channel is not available. Do not include real
+credentials or private logs in reports.
 
 ## Privacy Design
 
@@ -49,4 +50,5 @@ path diagnostics outside the report.
 
 ## Responsible Disclosure Contact
 
-Contact: security-contact@example.com
+Use GitHub Security Advisories when enabled. If advisories are not enabled, open an issue
+that describes the impact without including private logs, credentials, or exploit payloads.
