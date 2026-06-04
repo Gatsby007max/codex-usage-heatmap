@@ -2,7 +2,7 @@
 
 Visualize your local Codex token usage as a GitHub-style heatmap.
 
-![Sample heatmap](examples/sample.svg)
+![Codex Usage Heatmap sample report](examples/sample-report/codex-usage.png)
 
 ## Features
 
