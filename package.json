@@ -19,7 +19,9 @@
     "tokens",
     "heatmap",
     "cli",
-    "local-first"
+    "local-first",
+    "macos",
+    "menu-bar"
   ],
   "bin": {
     "cuh": "./dist/cli.js",
@@ -32,6 +34,11 @@
     "SECURITY.md",
     "CONTRIBUTING.md",
     "CHANGELOG.md",
+    "examples/sample-report/profile-preview.png",
+    "macos",
+    "scripts/run-macos-menu-bar.sh",
+    "scripts/install-macos-menu-bar.sh",
+    "scripts/verify-macos-menu-bar.sh",
     ".agents/skills/codex-usage-heatmap"
   ],
   "scripts": {
@@ -44,6 +51,8 @@
     "format": "prettier --write .",
     "check:language": "tsx scripts/check-language.ts",
     "sample": "tsx src/cli.ts sample --out examples/sample-report",
+    "macos:menubar": "./scripts/run-macos-menu-bar.sh",
+    "macos:verify": "./scripts/verify-macos-menu-bar.sh",
     "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm check:language"
   },
   "engines": {

@@ -15,4 +15,6 @@ practical.
 - Static HTML, JSON, CSV, and SVG outputs.
 - Profile-style report metrics for activity graph, streaks, lifetime tokens, peak daily
   tokens, and explicit local feature hints such as plugins and `/fast` mode.
+- Optional native macOS menu bar utility with one-shot snapshot, report generation, local
+  fixture verification, and Desktop app-bundle installer.
 - Repository Codex Skill, documentation, tests, and CI.

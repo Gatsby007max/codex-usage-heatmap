@@ -34,6 +34,8 @@ const textExtensions = new Set([
   ".html",
   ".svg",
   ".sh",
+  ".swift",
+  ".plist",
   ".txt"
 ]);
 
