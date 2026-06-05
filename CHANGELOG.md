@@ -13,4 +13,6 @@ practical.
 - Local log scan, doctor, report, svg, export, sample, and skill-install commands.
 - Privacy-safe parser adapters and sanitized fixtures.
 - Static HTML, JSON, CSV, and SVG outputs.
+- Profile-style report metrics for activity graph, streaks, lifetime tokens, peak daily
+  tokens, and explicit local feature hints such as plugins and `/fast` mode.
 - Repository Codex Skill, documentation, tests, and CI.

@@ -1,6 +1,6 @@
 import type { DailyUsage } from "../types.js";
 
-const columns: Array<keyof DailyUsage> = [
+const columns: Array<keyof Omit<DailyUsage, "featureCounts">> = [
   "date",
   "inputTokens",
   "cachedInputTokens",
@@ -23,9 +23,16 @@ function escapeCsv(value: unknown): string {
 }
 
 export function exportCsv(days: DailyUsage[]): string {
+  const header = [...columns, "features"];
   const rows = [
-    columns.join(","),
-    ...days.map((day) => columns.map((column) => escapeCsv(day[column])).join(","))
+    header.join(","),
+    ...days.map((day) => {
+      const featureSummary = Object.entries(day.featureCounts ?? {})
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([feature, count]) => `${feature}:${count}`)
+        .join("; ");
+      return [...columns.map((column) => escapeCsv(day[column])), escapeCsv(featureSummary)].join(",");
+    })
   ];
   return `${rows.join("\n")}\n`;
 }

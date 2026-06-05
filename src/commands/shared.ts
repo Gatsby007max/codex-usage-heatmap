@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import type { DailyUsage, ScanOptions, ThemeName, UsageMetric, WeekStart } from "../types.js";
+import type { DailyUsage, ReportOutput, ScanOptions, ThemeName, UsageMetric, WeekStart } from "../types.js";
 
 export class CliError extends Error {
   constructor(
@@ -66,16 +66,14 @@ export async function writeTextFile(filePath: string, contents: string): Promise
   await fs.writeFile(filePath, contents, "utf8");
 }
 
-export async function writeReportFiles(
-  outDir: string,
-  output: { html: string; svg: string; json: string; csv: string }
-): Promise<void> {
+export async function writeReportFiles(outDir: string, output: ReportOutput): Promise<void> {
   await fs.mkdir(outDir, { recursive: true });
   await Promise.all([
     fs.writeFile(path.join(outDir, "index.html"), output.html, "utf8"),
     fs.writeFile(path.join(outDir, "usage.json"), output.json, "utf8"),
     fs.writeFile(path.join(outDir, "usage.csv"), output.csv, "utf8"),
-    fs.writeFile(path.join(outDir, "codex-usage.svg"), output.svg, "utf8")
+    fs.writeFile(path.join(outDir, "codex-usage.svg"), output.svg, "utf8"),
+    fs.writeFile(path.join(outDir, "profile-preview.svg"), output.previewSvg, "utf8")
   ]);
 }
 

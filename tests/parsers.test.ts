@@ -82,6 +82,25 @@ describe("parsers", () => {
     expect(event?.estimationMode).toBe("file_mtime");
   });
 
+  it("extracts explicit plugin and fast mode feature hints", () => {
+    const candidate = genericUsageParser.parse(
+      {
+        type: "usage",
+        input_tokens: 5,
+        output_tokens: 5,
+        total_tokens: 10,
+        metadata: {
+          plugins: ["github"],
+          fastMode: true
+        }
+      },
+      context
+    )[0];
+    const event = normalizeCandidate(candidate!, context, createNormalizeState());
+
+    expect(event?.features).toEqual(["/fast mode", "plugins"]);
+  });
+
   it("ignores non-usage records", () => {
     expect(genericUsageParser.canParse({ type: "note" })).toBe(false);
   });

@@ -1,5 +1,5 @@
 import type { ParsedUsageCandidate, ParserContext, UsageParser } from "../types.js";
-import { asRecord, firstString, getNested, usageFromObject } from "./helpers.js";
+import { asRecord, featureHintsFromRecord, firstString, getNested, usageFromObject } from "./helpers.js";
 
 const version = "1.0.0";
 
@@ -81,6 +81,7 @@ export const codexTokenCountParser: UsageParser = {
         timestamp: timestampOf(object),
         model: modelOf(object),
         sessionId: sessionOf(object),
+        features: featureHintsFromRecord(object),
         usage,
         usageKind: totalUsage && !lastUsage ? "total" : "event",
         rawKind: kindOf(object) ?? "token_count",

@@ -31,6 +31,7 @@ export interface NormalizedUsageEvent extends TokenUsage {
   rawKind: string;
   parserVersion: string;
   estimationMode: EstimationMode;
+  features: string[];
 }
 
 export interface DailyUsage extends TokenUsage {
@@ -38,6 +39,7 @@ export interface DailyUsage extends TokenUsage {
   eventCount: number;
   sessionCount: number;
   filesCount: number;
+  featureCounts: Record<string, number>;
   level: HeatmapLevel;
   levelBasis: LevelBasis;
 }
@@ -64,6 +66,7 @@ export interface ParsedUsageCandidate {
   timestamp?: string;
   model?: string;
   sessionId?: string;
+  features?: string[];
   usage: TokenUsage;
   usageKind: "event" | "total";
   rawKind: string;
@@ -124,6 +127,7 @@ export interface RenderOptions {
 export interface ReportOutput {
   html: string;
   svg: string;
+  previewSvg: string;
   json: string;
   csv: string;
 }

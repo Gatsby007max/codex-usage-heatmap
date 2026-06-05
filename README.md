@@ -1,14 +1,19 @@
 # Codex Usage Heatmap
 
-Visualize your local Codex token usage as a GitHub-style heatmap.
+View local Codex activity as a profile-style dashboard: activity graph, streaks,
+lifetime tokens, peak daily tokens, and feature hints such as plugins and `/fast` mode.
 
-![Codex Usage Heatmap sample report](examples/sample-report/codex-usage.png)
+![Codex Usage Heatmap profile preview](examples/sample-report/profile-preview.png)
 
 ## Features
 
 - Scans local Codex JSONL logs without requiring an OpenAI API key.
 - Aggregates input, cached input, output, reasoning output, and total tokens by day.
-- Renders a GitHub-style heatmap as standalone SVG.
+- Renders a GitHub-style activity graph as standalone SVG.
+- Shows profile-style stats: latest streak, longest streak, lifetime tokens, peak daily
+  tokens, active days, and date range.
+- Detects explicit local feature hints for plugins and `/fast` mode when those fields are
+  present in logs.
 - Generates a static HTML report with JSON and CSV exports.
 - Includes privacy-first discovery, sensitive file skipping, and path redaction.
 - Works offline by default and makes no network calls.
@@ -64,7 +69,10 @@ cuh skill-install --scope repo
 cuh skill-install --scope user
 ```
 
-`cuh report` creates `index.html`, `usage.json`, `usage.csv`, and `codex-usage.svg`.
+`cuh report` creates `index.html`, `usage.json`, `usage.csv`, `codex-usage.svg`, and
+`profile-preview.svg`.
+The HTML report includes an activity graph, streak cards, lifetime token totals, peak
+daily token totals, and a Top Features table.
 
 ## Privacy & Security
 
@@ -89,12 +97,22 @@ The parser adapters look for Codex-like token usage metadata in JSONL records, i
 If only cumulative totals are available, the scanner calculates deltas within the same
 session when possible. If a delta cannot be calculated, the event is marked as estimated.
 
+Feature hints are collected only from explicit metadata fields such as `plugin`, `plugins`,
+`feature`, `features`, `fastMode`, `fast_mode`, `mode`, or `/fast` command fields. The
+scanner does not inspect prompt or response text to infer features.
+
 ## Limitations
 
 - Codex log schemas may change.
 - Token count availability depends on what Codex logs locally.
 - This is not an official OpenAI billing, quota, or account usage source.
 - Local logs may not match account billing.
+- Codex Profile metrics in this project are derived from locally available logs, not from
+  OpenAI account-side profile data.
+- Lifetime tokens, streaks, and peak daily tokens may be incomplete if older local logs are
+  missing or were rotated.
+- Top feature counts require explicit local log fields for plugins or `/fast` mode. If those
+  fields are absent, the report shows `No local evidence`.
 - Some events may be estimated when only cumulative totals are available.
 - Generated reports are only as complete as the local logs available on the machine.
 - Timestamp handling is conservative. Missing timestamps fall back to file metadata only when

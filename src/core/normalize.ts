@@ -138,6 +138,7 @@ export function normalizeCandidate(
     totalTokens: usage.totalTokens,
     rawKind: candidate.rawKind,
     parserVersion: `${candidate.parserName}@${candidate.parserVersion}`,
-    estimationMode: finalEstimationMode
+    estimationMode: finalEstimationMode,
+    features: candidate.features ?? []
   };
 }

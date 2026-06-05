@@ -1,5 +1,5 @@
 import type { ParsedUsageCandidate, ParserContext, UsageParser } from "../types.js";
-import { asRecord, firstString, getNested, usageFromObject } from "./helpers.js";
+import { asRecord, featureHintsFromRecord, firstString, getNested, usageFromObject } from "./helpers.js";
 
 const version = "1.0.0";
 
@@ -40,6 +40,7 @@ export const codexHistoryParser: UsageParser = {
         timestamp: firstString(object.timestamp, object.created_at, object.createdAt, object.time),
         model: firstString(object.model, getNested(object, ["metadata", "model"])),
         sessionId: firstString(object.session_id, object.sessionId, getNested(object, ["metadata", "session_id"])),
+        features: featureHintsFromRecord(object),
         usage,
         usageKind: "event",
         rawKind: firstString(object.type, object.kind, object.source) ?? "history_usage",

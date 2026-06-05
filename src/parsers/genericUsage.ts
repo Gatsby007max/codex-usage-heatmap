@@ -1,5 +1,5 @@
 import type { ParsedUsageCandidate, ParserContext, UsageParser } from "../types.js";
-import { asRecord, firstString, getNested, usageFromObject } from "./helpers.js";
+import { asRecord, featureHintsFromRecord, firstString, getNested, usageFromObject } from "./helpers.js";
 
 const version = "1.0.0";
 
@@ -26,6 +26,7 @@ export const genericUsageParser: UsageParser = {
         timestamp: firstString(object.timestamp, object.created_at, object.createdAt),
         model: firstString(object.model, getNested(object, ["metadata", "model"])),
         sessionId: firstString(object.session_id, object.sessionId),
+        features: featureHintsFromRecord(object),
         usage,
         usageKind: "event",
         rawKind: firstString(object.type, object.kind) ?? "generic_usage",

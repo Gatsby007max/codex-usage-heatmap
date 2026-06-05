@@ -8,7 +8,8 @@ export async function runSampleCommand(options: Record<string, unknown>): Promis
   const output = renderHtmlReport(days, {
     year,
     theme: parseTheme(typeof options.theme === "string" ? options.theme : undefined),
-    title: "Codex Usage Heatmap Sample"
+    title: "Codex Usage Heatmap Sample",
+    generatedAt: `${year}-01-01T00:00:00.000Z`
   });
   const outDir = typeof options.out === "string" ? options.out : "sample-report";
   await writeReportFiles(outDir, output);

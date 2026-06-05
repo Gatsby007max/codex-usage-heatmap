@@ -33,6 +33,7 @@ describe("CLI smoke tests", () => {
     await expect(fs.access(path.join(out, "usage.json"))).resolves.toBeUndefined();
     await expect(fs.access(path.join(out, "usage.csv"))).resolves.toBeUndefined();
     await expect(fs.access(path.join(out, "codex-usage.svg"))).resolves.toBeUndefined();
+    await expect(fs.access(path.join(out, "profile-preview.svg"))).resolves.toBeUndefined();
   });
 
   it("runs doctor", async () => {

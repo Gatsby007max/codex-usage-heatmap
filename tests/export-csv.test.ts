@@ -15,12 +15,13 @@ describe("exportCsv", () => {
       eventCount: 1,
       sessionCount: 1,
       filesCount: 1,
+      featureCounts: { plugins: 2 },
       level: 1,
       levelBasis: "quantile"
     };
     const csv = exportCsv([day]);
     expect(csv.startsWith("date,inputTokens,cachedInputTokens,outputTokens")).toBe(true);
     expect(csv.endsWith("\n")).toBe(true);
-    expect(csv).toContain("2026-06-01,1,2,3,4,10,1,1,1,1,quantile");
+    expect(csv).toContain("2026-06-01,1,2,3,4,10,1,1,1,1,quantile,plugins:2");
   });
 });

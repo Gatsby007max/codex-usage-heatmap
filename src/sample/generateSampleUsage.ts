@@ -21,6 +21,13 @@ export function generateSampleUsage(year = new Date().getFullYear()): DailyUsage
     const cachedInputTokens = Math.round(base * 0.12);
     const outputTokens = Math.round(base * 0.25);
     const reasoningOutputTokens = Math.max(0, base - inputTokens - cachedInputTokens - outputTokens);
+    const featureCounts: Record<string, number> = {};
+    if (active && index % 7 === 0) {
+      featureCounts.plugins = 1 + (index % 3);
+    }
+    if (active && index % 9 === 0) {
+      featureCounts["/fast mode"] = 1;
+    }
 
     days.push({
       date: date.toISOString().slice(0, 10),
@@ -32,6 +39,7 @@ export function generateSampleUsage(year = new Date().getFullYear()): DailyUsage
       eventCount: active ? 1 + (index % 4) : 0,
       sessionCount: active ? 1 + (index % 2) : 0,
       filesCount: active ? 1 : 0,
+      featureCounts,
       level: 0,
       levelBasis: "quantile"
     });

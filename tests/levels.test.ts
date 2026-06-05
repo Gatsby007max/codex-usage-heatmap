@@ -14,6 +14,7 @@ function day(date: string, totalTokens: number): DailyUsage {
     eventCount: totalTokens > 0 ? 1 : 0,
     sessionCount: totalTokens > 0 ? 1 : 0,
     filesCount: totalTokens > 0 ? 1 : 0,
+    featureCounts: {},
     level: 0,
     levelBasis: "quantile"
   };

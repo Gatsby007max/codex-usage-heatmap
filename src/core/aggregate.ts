@@ -37,6 +37,7 @@ export function aggregateDailyUsage(
         eventCount: 0,
         sessionCount: 0,
         filesCount: 0,
+        featureCounts: {},
         level: 0,
         levelBasis: options.levelMode ?? "quantile",
         sessions: new Set<string>(),
@@ -55,6 +56,9 @@ export function aggregateDailyUsage(
     }
     if (event.sourceFile) {
       day.files.add(event.sourceFile);
+    }
+    for (const feature of event.features) {
+      day.featureCounts[feature] = (day.featureCounts[feature] ?? 0) + 1;
     }
 
     map.set(event.date, day);

@@ -9,6 +9,10 @@
     "eventCount": 2,
     "sessionCount": 1,
     "filesCount": 1,
+    "featureCounts": {
+      "plugins": 1,
+      "/fast mode": 1
+    },
     "level": 3,
     "levelBasis": "quantile"
   },
@@ -22,6 +26,7 @@
     "eventCount": 1,
     "sessionCount": 1,
     "filesCount": 1,
+    "featureCounts": {},
     "level": 1,
     "levelBasis": "quantile"
   }

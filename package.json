@@ -1,7 +1,7 @@
 {
   "name": "codex-usage-heatmap",
   "version": "0.1.0",
-  "description": "Visualize your local Codex token usage as a GitHub-style heatmap.",
+  "description": "View local Codex activity as a profile-style dashboard with tokens, streaks, peaks, and feature hints.",
   "type": "module",
   "license": "MIT",
   "author": "Codex Usage Heatmap contributors",

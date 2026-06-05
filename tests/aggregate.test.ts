@@ -3,7 +3,13 @@ import { describe, expect, it } from "vitest";
 import { aggregateDailyUsage } from "../src/core/aggregate.js";
 import type { NormalizedUsageEvent } from "../src/types.js";
 
-function event(id: string, date: string, totalTokens: number, sessionId: string): NormalizedUsageEvent {
+function event(
+  id: string,
+  date: string,
+  totalTokens: number,
+  sessionId: string,
+  features: string[] = []
+): NormalizedUsageEvent {
   return {
     id,
     date,
@@ -19,7 +25,8 @@ function event(id: string, date: string, totalTokens: number, sessionId: string)
     totalTokens,
     rawKind: "test",
     parserVersion: "test@1",
-    estimationMode: "none"
+    estimationMode: "none",
+    features
   };
 }
 
@@ -30,6 +37,7 @@ describe("aggregateDailyUsage", () => {
     expect(days[0]?.totalTokens).toBe(30);
     expect(days[0]?.sessionCount).toBe(2);
     expect(days[0]?.filesCount).toBe(2);
+    expect(days[0]?.featureCounts).toEqual({});
   });
 
   it("handles date range filters", () => {
@@ -39,5 +47,14 @@ describe("aggregateDailyUsage", () => {
     ], { since: "2026-06-02", until: "2026-06-02" });
     expect(days).toHaveLength(1);
     expect(days[0]?.date).toBe("2026-06-02");
+  });
+
+  it("counts feature hints by day", () => {
+    const days = aggregateDailyUsage([
+      event("a", "2026-06-01", 10, "s1", ["plugins", "/fast mode"]),
+      event("b", "2026-06-01", 20, "s2", ["plugins"])
+    ]);
+
+    expect(days[0]?.featureCounts).toEqual({ "/fast mode": 1, plugins: 2 });
   });
 });
