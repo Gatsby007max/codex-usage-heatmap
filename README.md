@@ -15,7 +15,6 @@ lifetime tokens, peak daily tokens, and feature hints such as plugins and `/fast
 - Detects explicit local feature hints for plugins and `/fast` mode when those fields are
   present in logs.
 - Generates a static HTML report with JSON and CSV exports.
-- Includes an optional native macOS menu bar utility that wraps the same local CLI data.
 - Includes privacy-first discovery, sensitive file skipping, and path redaction.
 - Works offline by default and makes no network calls.
 - Provides deterministic sample data for demos and tests.
@@ -51,41 +50,6 @@ Use sample output when real local logs are unavailable:
 pnpm dlx codex-usage-heatmap sample --out ./sample-report
 open ./sample-report/index.html
 ```
-
-## Native macOS Menu Bar Utility
-
-The optional menu bar utility is a native Swift/AppKit app that calls the built CLI locally.
-It shows compact Codex usage profile metrics in the macOS menu bar and can generate/open the
-HTML report from its menu.
-
-Build and run from a local checkout:
-
-```bash
-pnpm install
-pnpm build
-pnpm macos:menubar
-```
-
-Run a one-shot JSON snapshot without opening a GUI:
-
-```bash
-CODEX_USAGE_SOURCE=fixtures pnpm macos:menubar -- --once --debug
-```
-
-Install a local `.app` bundle to the Desktop:
-
-```bash
-./scripts/install-macos-menu-bar.sh
-open "$HOME/Desktop/Codex Usage Heatmap.app"
-```
-
-Useful environment variables:
-
-- `CODEX_USAGE_HEATMAP_CLI`: absolute path to `dist/cli.js`.
-- `CODEX_USAGE_HEATMAP_REPO_ROOT`: checkout root used for reports and sample output.
-- `CODEX_USAGE_SOURCE`: source passed to `cuh scan` and `cuh report`.
-- `CODEX_USAGE_REPORT_DIR`: report output directory opened from the menu.
-- `CODEX_USAGE_MENU_POLL_INTERVAL`: polling interval in seconds, clamped from 15 to 3600.
 
 ## Commands
 
@@ -145,8 +109,6 @@ scanner does not inspect prompt or response text to infer features.
 - Local logs may not match account billing.
 - Codex Profile metrics in this project are derived from locally available logs, not from
   OpenAI account-side profile data.
-- The macOS menu bar utility requires macOS, Swift tooling, Node.js, and a built local CLI.
-  It is not notarized or distributed as a signed app bundle.
 - Lifetime tokens, streaks, and peak daily tokens may be incomplete if older local logs are
   missing or were rotated.
 - Top feature counts require explicit local log fields for plugins or `/fast` mode. If those
